@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio website for uching  – Web Developer" />
+  <title>uching • Web Developer</title>
+
+  <!--=============== FAVICON ===============-->
+  <link rel="icon" href="https://fav.farm/⭐" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!--=============== GOOGLE FONTS ===============-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!--=============== STYLES ===============-->
+  <style>
+    :root {
+      --bg: #0b0f17;
+      /* dark */
+      --surface: #121826;
+      --text: #e6eaf2;
+      --muted: #94a3b8;
+      --brand: #6ee7b7;
+      /* mint */
+      --brand-ink: #064e3b;
+      --card: #0f1422;
+      --border: #233147;
+      --shadow: 0 8px 30px rgba(0, 0, 0, .35);
+
+      --maxw: 1120px;
+      --radius: 1.25rem;
+      --gap: 2rem;
+    }
+
+    /* Light theme */
+    :root.light {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0b1220;
+      --muted: #475569;
+      --brand: #0ea5e9;
+      --brand-ink: #082f49;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 10px 20px rgba(2, 6, 23, .08);
+    }
+
+
+    @keyframes glow {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      50% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .animate-glow {
+      animation: glow 3s ease-in-out infinite;
+    }
+
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 1.25rem
+    }
+
+    .section {
+      padding: 6rem 0
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--gap)
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(180%) blur(12px);
+      background: color-mix(in oklab, var(--bg) 75%, transparent);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px
+    }
+
+    .nav__brand {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.05rem
+    }
+
+    .nav__brand i {
+      color: var(--brand)
+    }
+
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      gap: 1rem
+    }
+
+    .nav__list {
+      display: flex;
+      gap: .75rem;
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .nav__link {
+      padding: .6rem .9rem;
+      border-radius: .8rem;
+      color: var(--muted)
+    }
+
+    .nav__link.active,
+    .nav__link:hover {
+      color: var(--text);
+      background: var(--surface)
+    }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1rem;
+      border-radius: .9rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow)
+    }
+
+    .btn--ghost {
+      background: transparent
+    }
+
+    .btn--brand {
+      background: var(--brand);
+      color: var(--brand-ink);
+      border-color: transparent;
+      font-weight: 700
+    }
+
+    .nav__toggle {
+      display: none;
+      font-size: 1.5rem
+    }
+
+    /* Mobile menu */
+    @media (max-width: 860px) {
+      .nav__list {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 64px;
+        background: var(--surface);
+        padding: 1rem;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-110%);
+        transition: .3s ease;
+        flex-direction: column
+      }
+
+      .nav__list.open {
+        transform: translateY(0)
+      }
+
+      .nav__toggle {
+        display: block
+      }
+
+      .nav__menu {
+        gap: .25rem
+      }
+    }
+
+    /* Hero */
+    .home {
+      padding-top: 8rem
+    }
+
+    .home__wrap {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: .5rem;
+      padding: .4rem .7rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border)
+    }
+
+    .title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin: .75rem 0
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 60ch
+    }
+
+    .home__cta {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem
+    }
+
+    .stat {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--card);
+      text-align: center
+    }
+
+    .stat b {
+      font-size: 1.4rem
+    }
+
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #111827, #0b0f17);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    @media (max-width: 980px) {
+      .home__wrap {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* About */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow)
+    }
+
+    .about__skills {
+      display: grid;
+      gap: .75rem
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem .7rem;
+      border: 1px solid var(--border);
+      border-radius: .7rem;
+      font-size: .85rem;
+      color: var(--muted);
+      background: var(--surface)
+    }
+
+    .tags {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap
+    }
+
+    .progress {
+      height: 10px;
+      background: color-mix(in oklab, var(--border) 70%, transparent);
+      border-radius: 999px;
+      overflow: hidden
+    }
+
+    .progress>i {
+      display: block;
+      height: 100%;
+      background: var(--brand)
+    }
+
+    @media (max-width: 980px) {
+      .about__grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Services */
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .service {
+      transition: transform .25s ease, box-shadow .25s ease
+    }
+
+    .service:hover {
+      transform: translateY(-4px)
+    }
+
+    @media (max-width: 980px) {
+      .services__grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services__grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Projects */
+    .projects__grid {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: var(--surface)
+    }
+
+    .project img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover
+    }
+
+    .project__body {
+      padding: 1rem
+    }
+
+    .project__title {
+      font-weight: 700
+    }
+
+    .project__tags {
+      gap: .4rem
+    }
+
+    .project__links {
+      display: flex;
+      gap: .5rem
+    }
+
+    @media (max-width: 980px) {
+      .projects__grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects__grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .photos_body {
+      width: 100%;
+      height: auto;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+
+    }
+
+    .photos_body img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    .photos-section {
+      background: var(--bg);
+    }
+
+    .theme-icon {
+      color: var(--text);
+    }
+
+    /* Contact */
+    form {
+      display: grid;
+      gap: .9rem
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: .9rem 1rem;
+      border-radius: .8rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text)
+    }
+
+    textarea {
+      min-height: 140px
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem
+    }
+
+    @media (max-width: 640px) {
+      .form__row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .form__notice {
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    /* Footer */
+    .footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      background: color-mix(in oklab, var(--bg) 90%, transparent)
+    }
+
+    .footer__row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap
+    }
+
+    .socials {
+      display: flex;
+      justify-content: space-around;
+      gap: .6rem
+    }
+
+    /* Scroll Up */
+    .scrollup {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--brand);
+      color: var(--brand-ink);
+      border: none;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: .25s
+    }
+
+    .scrollup.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0)
+    }
+
+    /* Helpers */
+    .muted {
+      color: var(--muted)
+    }
+
+    .section__head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem
+    }
+
+    .section__title {
+      font-size: clamp(1.5rem, 2.6vw, 2rem)
+    }
+
+
+    .avatar-shape {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1/1;
+      border-radius: 28% 72% 62% 38% / 36% 42% 58% 64%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e293b, #020617);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .45);
+      animation: morph 8s ease-in-out infinite;
+    }
+
+    .avatar-shape img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -12px;
+      background: linear-gradient(135deg, #6ee7b7, #0ea5e9, #a78bfa);
+      filter: blur(35px);
+      opacity: .35;
+      z-index: -1;
+    }
+
+
+    @keyframes morph {
+      0% {
+        border-radius: 28% 72% 62% 38% / 36% 42% 58% 64%;
+      }
+
+      50% {
+        border-radius: 63% 37% 44% 56% / 52% 68% 32% 48%;
+      }
+
+      100% {
+        border-radius: 28% 72% 62% 38% / 36% 42% 58% 64%;
+      }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+      color: #222;
+      letter-spacing: 1px;
+    }
+
+    .logo-icon {
+      display: inline-block;
+      background: linear-gradient(135deg, #6a5af9, #00d2ff);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--==================== HEADER ====================-->
+  <!-- <header class="header" id="header">
+    <div class="container nav">
+      <a href="#home" class="nav__brand" aria-label="Go to home">
+         
+         <span class="logo-icon">U</span>ching
+      </a>
+      <nav class="nav__menu">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="#home">Home</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#services">Services</a></li>
+          <li><a class="nav__link" href="#projects">Projects</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+          <li><a class="nav__link" href="#photos">Photos</a></li>
+        </ul>
+        <div class="nav__actions">
+          <button class="btn btn--ghost" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme"><i class="ri-sun-line" id="theme-icon"></i></button>
+          <a class="btn btn--brand" href="#contact"><i class="ri-send-plane-2-line"></i> Hire me</a>
+          <button class="nav__toggle btn btn--ghost" id="menu-toggle" aria-label="Menu"><i class="ri-menu-line"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header> -->
+  <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50 header" id="header">
+    <div class="max-w-7xl mx-auto px-4  ">
+
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a  href="#home" class="text-2xl font-bold tracking-wide text-sky-400">
+          Uching
+        </a>
+
+        <!-- Navigation (ONE TIME ONLY) -->
+        <nav id="navMenu" class="
+          absolute top-16 left-0 w-full bg-slate-800
+          flex flex-col gap-4 p-4 text-sm
+          lg:static lg:w-auto lg:bg-transparent
+          lg:flex-row lg:items-center lg:gap-8 lg:p-0
+          hidden lg:flex
+        ">
+          <a href="#home" class="hover:text-sky-400 transition">Home</a>
+          <a href="#about" class="hover:text-sky-400 transition">About</a>
+          <a href="#services" class="hover:text-sky-400 transition">Services</a>
+          <a href="#projects" class="hover:text-sky-400 transition">Projects</a>
+          <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
+          <a href="#photos" class="hover:text-sky-400 transition">Photos</a>
+        </nav>
+
+        <!-- Right Buttons -->
+        <div class="flex items-center gap-4">
+
+          <!-- Theme Toggle -->
+          <button class="btn btn--ghost" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme"><i class="ri-sun-line" id="theme-icon"></i></button>
+          <a class="btn btn--brand" href="#contact"><i class="ri-send-plane-2-line"></i> Hire me</a>
+          <!-- Mobile Menu Button -->
+          <button id="menuBtn" class="lg:hidden">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--==================== MAIN ====================-->
+  <main class="main">
+    <!--==================== HOME ====================-->
+    <section class="home section" id="home">
+      <div class="container home__wrap">
+        <div>
+          <span class="badge"><i class="ri-sparkling-line"></i> Web Developer</span>
+          <h1 class="title">I build fast, clean, and modern web apps.</h1>
+          <p class="lead">I’m <b> Uching </b>, a developer who cares about performance, accessibility, and craft. I turn
+            ideas into polished products using html , css , js , Python and Django</p>
+          <div class="home__cta">
+            <a class="btn btn--brand" href="#projects"><i class="ri-rocket-2-line"></i> See projects</a>
+            <a class="btn" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox"><i class="ri-mail-line"></i> Email
+              me</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>1+ yrs</b>
+              <div class="muted">Experience</div>
+            </div>
+            <div class="stat"><b>12+</b>
+              <div class="muted">Projects</div>
+            </div>
+            <div class="stat"><b>100%</b>
+              <div class="muted">Remote-ready</div>
+            </div>
+          </div>
+        </div>
+        <div class="avatar-shape">
+          <span class="avatar-glow"></span>
+          <img src="./assets/img/myprofile.png" alt="Portrait of Uching" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
+    <!--==================== ABOUT ====================-->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">About</h2>
+          <span class="muted">Who I am and how I build</span>
+        </div>
+
+        <div class="about__grid">
+          <div class="card">
+            <h3>Bio</h3>
+            <p class="muted">
+              I am <b>Uching</b>, a web developer focused on building practical, clean, and scalable web applications.
+              I enjoy working on real-world systems, writing maintainable code, and turning complex requirements into
+              simple solutions.
+              Most of my work revolves around Django-based backends and clean frontend interfaces.
+            </p>
+            <div class="tags" aria-label="Core stack">
+              <span class="tag"><i class="ri-html5-line"></i> HTML</span>
+              <span class="tag"><i class="ri-css3-line"></i> CSS</span>
+              <span class="tag"><i class="ri-javascript-line"></i> JavaScript</span>
+              <span class="tag"><i class="ri-python-line"></i> Python</span>
+              <span class="tag"><i class="ri-database-2-line"></i> Django</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Skills</h3>
+            <div class="about__skills">
+              <div>
+                <div class="muted">HTML / CSS</div>
+                <div class="progress" aria-hidden="true"><i style="width:90%"></i></div>
+              </div>
+              <div>
+                <div class="muted">JavaScript</div>
+                <div class="progress" aria-hidden="true"><i style="width:85%"></i></div>
+              </div>
+              <div>
+                <div class="muted">Python</div>
+                <div class="progress" aria-hidden="true"><i style="width:68%"></i></div>
+              </div>
+              <div>
+                <div class="muted">Django</div>
+                <div class="progress" aria-hidden="true"><i style="width:70%"></i></div>
+              </div>
+              <div>
+                <div class="muted">Git / GitHub</div>
+                <div class="progress" aria-hidden="true"><i style="width:50%"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!--==================== SERVICES ====================-->
+    <section class="services section" id="services">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Services</h2>
+          <span class="muted">What I offer professionally</span>
+        </div>
+
+        <div class="grid services__grid">
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-window-line"></i> Frontend Development</h3>
+            <p class="muted">
+              Clean, responsive, and user-friendly interfaces using modern HTML, CSS, and JavaScript.
+              Focused on accessibility, performance, and cross-browser compatibility.
+            </p>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-code-s-slash-line"></i> Backend Development</h3>
+            <p class="muted">
+              Secure and scalable backend systems built with Django.
+              Proper authentication, database design, and clean API logic.
+            </p>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-database-2-line"></i> Database Design</h3>
+            <p class="muted">
+              Well-structured relational databases with optimized queries.
+              Experience with MySQL, PostgreSQL, and Django ORM.
+            </p>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-layout-masonry-line"></i> Admin Panels & Dashboards</h3>
+            <p class="muted">
+              Custom admin dashboards for managing users, data, and reports.
+              Practical UI focused on real-world workflows.
+            </p>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-bug-line"></i> Bug Fixing & Optimization</h3>
+            <p class="muted">
+              Debugging existing systems, improving slow pages,
+              fixing logic errors, and refactoring messy codebases.
+            </p>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+            <h3><i class="ri-cloud-line"></i> Deployment & Maintenance</h3>
+            <p class="muted">
+              Deploying applications on VPS or shared hosting,
+              environment setup, and basic server maintenance support.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!--==================== PROJECTS ====================-->
+    <section class="projects section" id="projects">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Projects</h2>
+          <a class="btn btn--ghost" href="https://github.com/uchainai" target="_blank" rel="noreferrer">
+            <i class="ri-github-line"></i> More on GitHub
+          </a>
+        </div>
+
+        <div class="grid projects__grid">
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop"
+              alt="Student Management System" loading="lazy" />
+            <div class="project__body">
+              <div class="project__title">Student Management System</div>
+              <p class="muted">
+                Complete academic management system with student records, fees, exams, and reports.
+              </p>
+              <div class="tags project__tags">
+                <span class="tag">Django</span>
+                <span class="tag">Python</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+              <div class="project__links">
+                <a class="btn" href="https://github.com/uchainai" target="_blank" rel="noreferrer">
+                  <i class="ri-github-line"></i> Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1400&auto=format&fit=crop"
+              alt="Exam Seat Plan System" loading="lazy" />
+            <div class="project__body">
+              <div class="project__title">Exam Seat Plan System</div>
+              <p class="muted">
+                Automated exam seating arrangement with room-wise distribution and admin control.
+              </p>
+              <div class="tags project__tags">
+                <span class="tag">Django</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML</span>
+              </div>
+              <div class="project__links">
+                <a class="btn" href="https://github.com/uchainai" target="_blank" rel="noreferrer">
+                  <i class="ri-github-line"></i> Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop"
+              alt="Portfolio Website" loading="lazy" />
+            <div class="project__body">
+              <div class="project__title">Personal Portfolio Website</div>
+              <p class="muted">
+                Responsive personal portfolio to showcase projects, skills, and contact information.
+              </p>
+              <div class="tags project__tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <div class="project__links">
+                <a class="btn btn--ghost" href="#" target="_blank" rel="noreferrer">
+                  <i class="ri-eye-line"></i> Live
+                </a>
+                <a class="btn" href="https://github.com/uchainai" target="_blank" rel="noreferrer">
+                  <i class="ri-github-line"></i> Code
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section contact container from-slate-900 via-slate-800 to-slate-900 py-20 px-4"
+      id="contact">
+      <div class="max-w-3xl mx-auto from-slate-900 bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl section ">
+
+        <!-- Heading -->
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Contact Us
+          </h2>
+          <p class="text-gray-300 mt-2">
+            Have any questions? We'd love to hear from you.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form class="space-y-5">
+          <input type="text" placeholder="Your Name"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            required />
+
+          <input type="email" placeholder="Your Email"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            required />
+
+          <textarea rows="5" placeholder="Your Message"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            required></textarea>
+
+          <button type="submit" class="relative w-full py-5 font-bold text-center  text-white
+         bg-emerald-500 rounded-xl overflow-hidden
+         shadow-lg shadow-emerald-500/40
+         transition-all duration-300
+         hover:bg-emerald-600 hover:shadow-emerald-600/50
+
+         before:absolute before:inset-0
+         before:bg-gradient-to-r before:from-emerald-300 before:via-emerald-500 before:to-emerald-300
+         before:opacity-30 before:animate-glow
+         before:-translate-x-full
+         ">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+    </section>
+    <section id="photos" class="py-24 section photos-section">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">My Photos</h2>
+          <span class="muted">Every Picture Tells a Story</span>
+        </div>
+
+        <div class="grid services__grid">
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <!-- Image -->
+            <img src="./assets/img/aigen.png" alt="Backend Development" class="
+      w-full h-42 object-cover
+      transition-transform duration-700 ease-out
+      group-hover:scale-110
+    " />
+
+            <!-- Overlay -->
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                Create with GPT 👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+
+          </article>
+
+
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/myprofile.png" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                “At that time, I was feeling disappointed
+
+              </h3>
+            </div>
+          </article>
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/passport.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                “I took a passport-size photo and then changed the background using an editing tool.”
+              </h3>
+            </div>
+          </article>
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.40 PM (1).jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.40 PM.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.41 PM (1).jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.41 PM.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+
+
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.43 PM (1).jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.44 PM.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.44 PM.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+          <article class="group photos_body relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg">
+
+            <img src="./assets/img/WhatsApp Image 2026-01-31 at 1.56.43 PM.jpeg" alt="">
+            <div class="
+      absolute inset-0
+      bg-slate-900/80
+      flex flex-col justify-center items-center text-center
+      px-6
+      opacity-0 translate-y-6
+      group-hover:opacity-100 group-hover:translate-y-0
+      transition-all duration-500 ease-out
+    ">
+              <h3 class="
+        text-xl font-semibold mb-2 text-sky-400
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        transition-all duration-500 delay-100
+      ">
+                👉 “This photo was taken when we went on a trip with our local friends.”
+              </h3>
+            </div>
+          </article>
+
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+  </main>
+
+  <!--==================== FOOTER ====================-->
+  <footer class="footer"
+    style="padding:3rem 0; background:var(--surface); border-top:2px solid var(--brand); border-radius:1rem 1rem 0 0;">
+    <div class="container footer__row"
+      style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div class="muted" style="font-weight:500;">© <span id="year"></span> Uching. All rights reserved.</div>
+      <div class="socials" style="display:flex;   gap:1rem;">
+        <a class="tag" href="https://github.com/uchingnar" aria-label="GitHub"><i class="ri-github-line"></i></a>
+        <a class="tag" href="https://www.facebook.com/uchai.marma.303318/" aria-label="facebook"> <i
+            class="ri-facebook-fill"></i></a>
+        <a class="tag" href="https://www.linkedin.com/in/uching/details/skills/" aria-label="LinkedIn"><i
+            class="ri-linkedin-box-line"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--========== SCROLL UP ==========-->
+  <button class="scrollup" id="scroll-up" aria-label="Scroll to top"><i class="ri-arrow-up-line"></i></button>
+
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js" crossorigin></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'light') root.classList.add('light');
+    themeIcon.className = root.classList.contains('light') ? 'ri-moon-line' : 'ri-sun-line';
+
+    themeBtn.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const light = root.classList.contains('light');
+      localStorage.setItem('theme', light ? 'light' : 'dark');
+      themeIcon.className = light ? 'ri-moon-line' : 'ri-sun-line';
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navList = document.getElementById('nav-list');
+    menuToggle?.addEventListener('click', () => navList.classList.toggle('open'));
+    navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+    // Active link on scroll
+    const sections = [...document.querySelectorAll('section[id]')];
+    const links = [...document.querySelectorAll('.nav__link')];
+    const byId = id => links.find(a => a.getAttribute('href') === `#${id}`);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = byId(id);
+        if (link) {
+          if (entry.isIntersecting) link.classList.add('active');
+          else link.classList.remove('active');
+        }
+      })
+    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+    sections.forEach(s => observer.observe(s));
+
+    // Header shadow on scroll + ScrollUp button
+    const header = document.getElementById('header');
+    const scrollUp = document.getElementById('scroll-up');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.style.boxShadow = y > 10 ? 'var(--shadow)' : 'none';
+      if (y > 400) scrollUp.classList.add('show'); else scrollUp.classList.remove('show');
+    });
+    scrollUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ScrollReveal animations
+    if (window.ScrollReveal) {
+      ScrollReveal().reveal('.title, .badge, .home__cta, .stats', { distance: '24px', duration: 700, interval: 80, origin: 'bottom' });
+      ScrollReveal().reveal('.avatar', { distance: '24px', duration: 700, origin: 'right' });
+      ScrollReveal().reveal('.section__title', { distance: '18px', duration: 600, origin: 'left' });
+      ScrollReveal().reveal('.card, .project, .service', { distance: '20px', duration: 650, interval: 80, origin: 'bottom' });
+    }
+
+    // Contact form (Formspree example). Replace action URL to enable.
+    const form = document.getElementById('contact-form');
+    const notice = document.getElementById('form-notice');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const endpoint = form.getAttribute('action');
+      if (!endpoint || endpoint.includes('your-id')) {
+        notice.textContent = 'Form not configured. Add your Formspree endpoint in the form action.';
+        notice.style.color = 'tomato';
+        return;
+      }
+      const data = new FormData(form);
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.reset();
+          notice.textContent = 'Thanks! I will get back to you shortly.';
+          notice.style.color = 'var(--brand)';
+        } else {
+          notice.textContent = 'Something went wrong. Try again later.';
+          notice.style.color = 'tomato';
+        }
+      } catch (err) {
+        notice.textContent = 'Network error. Please try again.';
+        notice.style.color = 'tomato';
+      }
+    });
+  </script>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    menuBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("hidden");
+    });
+  </script>
+
+</body>
+
+</html>

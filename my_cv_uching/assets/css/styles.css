@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uching • Web Developer</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<head>
+  <style>
+    :root{
+      --bg: #020617;
+      --card: #020617;
+      --primary: #38bdf8;
+      --secondary: #22c55e;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
+      .service-card{
+    @apply bg-black/40 border border-white/10 p-8 rounded-2xl space-y-3 hover:-translate-y-2 transition;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(20px) }
+    to { opacity:1; transform:none }
+  }
+  .animate-fadeIn{ animation: fadeIn 1s ease forwards }
+  </style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)] font-[Inter]">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">
+      <span class="text-[var(--primary)]">U</span>ching
+    </h1>
+    <nav class="hidden md:flex gap-8 text-sm">
+      <a href="#home" class="hover:text-[var(--primary)]">Home</a>
+      <a href="#about" class="hover:text-[var(--primary)]">About</a>
+      <a href="#services" class="hover:text-[var(--primary)]">Services</a>
+      <a href="#projects" class="hover:text-[var(--primary)]">Projects</a>
+      <a href="#contact" class="hover:text-[var(--primary)]">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="min-h-screen flex items-center">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    
+    <div class="space-y-6 animate-fadeIn">
+      <span class="inline-block px-4 py-1 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-sm">
+        Web Developer
+      </span>
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        I build fast & modern <span class="text-[var(--primary)]">web apps</span>
+      </h2>
+      <p class="text-[var(--muted)]">
+        I’m <b>Uching</b>, a web developer focused on clean UI, performance,
+        and scalable backend systems using Django.
+      </p>
+
+      <div class="flex gap-4">
+        <a href="#projects" class="px-6 py-3 rounded-xl bg-[var(--primary)] text-black font-semibold hover:scale-105 transition">
+          View Projects
+        </a>
+        <a href="#contact" class="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
+          Contact Me
+        </a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute inset-0 bg-[var(--primary)] blur-3xl opacity-20 rounded-full"></div>
+      <img src="./assets/img/myprofile.png"
+           class="relative rounded-3xl shadow-xl hover:scale-105 transition duration-700"
+           alt="Uching">
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-10">About Me</h3>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+        <p class="text-[var(--muted)] leading-relaxed">
+          I build real-world web systems like student management,
+          exam systems, and admin dashboards.
+          I love writing clean, maintainable code.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <p class="text-sm mb-1">HTML / CSS</p>
+          <div class="h-2 bg-white/10 rounded-full">
+            <div class="h-full w-[90%] bg-[var(--primary)] rounded-full"></div>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm mb-1">JavaScript</p>
+          <div class="h-2 bg-white/10 rounded-full">
+            <div class="h-full w-[85%] bg-[var(--secondary)] rounded-full"></div>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm mb-1">Django</p>
+          <div class="h-2 bg-white/10 rounded-full">
+            <div class="h-full w-[90%] bg-purple-500 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="py-24 bg-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-12">Services</h3>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="service-card">
+        <i class="ri-layout-line text-3xl text-[var(--primary)]"></i>
+        <h4>Frontend Development</h4>
+        <p>Modern responsive UI with clean code.</p>
+      </div>
+      <div class="service-card">
+        <i class="ri-server-line text-3xl text-[var(--secondary)]"></i>
+        <h4>Backend Development</h4>
+        <p>Django-based secure systems.</p>
+      </div>
+      <div class="service-card">
+        <i class="ri-database-2-line text-3xl text-purple-400"></i>
+        <h4>Database Design</h4>
+        <p>Optimized relational databases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-12">Projects</h3>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="group bg-white/5 rounded-2xl overflow-hidden hover:scale-105 transition">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" class="h-48 w-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="p-6">
+          <h4 class="font-semibold">Student Management System</h4>
+          <p class="text-sm text-[var(--muted)]">Django, PostgreSQL</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-24 bg-white/5">
+  <div class="max-w-xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-8 text-center">Contact Me</h3>
+
+    <form class="space-y-4">
+      <input class="w-full p-3 rounded-xl bg-black/40 border border-white/10" placeholder="Your Name">
+      <input class="w-full p-3 rounded-xl bg-black/40 border border-white/10" placeholder="Email">
+      <textarea class="w-full p-3 rounded-xl bg-black/40 border border-white/10" rows="5" placeholder="Message"></textarea>
+      <button class="w-full py-3 rounded-xl bg-[var(--primary)] text-black font-semibold hover:scale-105 transition">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="py-6 text-center text-sm text-[var(--muted)]">
+  © 2026 Uching. All rights reserved.
+</footer>
+
+<!-- Utility -->
+ 
+
+</body>
+</html>
